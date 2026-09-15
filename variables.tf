@@ -1,5 +1,5 @@
 variable "db_password" {
-  description = "Password for RDS MySQL instance"
+  description = "RDS master password"
   type        = string
   sensitive   = true
 }
@@ -14,7 +14,7 @@ variable "subnet_ids" {
   description = "Subnet IDs for the DB subnet group"
   type        = list(string)
   default = [
-    "subnet-005d4953d9734f867",
-    "subnet-0db13bfc832d33ece"
+    "subnet-0d402b32f7a163c16",
+    "subnet-0478661034104df63"
   ]
 }

@@ -13,7 +13,7 @@ resource "aws_db_subnet_group" "rds_subnet_group" {
 
 # Security Group
 resource "aws_security_group" "rds_sg" {
-  name        = "app-rds-sg"
+  name        = "app-rds-stg"
   description = "Allow MySQL access from application servers"
   vpc_id      = var.vpc_id
 
@@ -34,7 +34,7 @@ resource "aws_security_group" "rds_sg" {
   }
 
   tags = {
-    Name        = "app-rds-sg"
+    Name        = "app-rds-stg"
     Environment = "dev"
     Project     = "RDS-Automation"
   }
@@ -50,8 +50,8 @@ resource "aws_db_instance" "mysql" {
   storage_type      = "gp3"
 
   db_name  = "appdb"
-  username = "admin"
-  password = var.db_password
+  username = local.db_credentials.username
+  password = local.db_credentials.password
 
   multi_az            = true
   publicly_accessible = false
